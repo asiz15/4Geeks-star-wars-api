@@ -12,7 +12,7 @@ function App() {
       <DataProvider>
       <Header/>
       <BrowserRouter>
-          <div>
+          <div style={{marginTop: '80px' }}>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/home"  />
