@@ -20,8 +20,7 @@ export const PlanetsGrid = () => {
   }, [])
   return (
     <div
-      className="flex flex-row flex-wrap gap-x-5 pb-5"
-
+    className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 flex justify-center items-center" style={{minHeight: '200px'}}
     >
       { planets.map(planet => {
         return <PlanetCard key={planet.uid} planet={planet}/>

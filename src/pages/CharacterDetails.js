@@ -28,17 +28,17 @@ export const CharacterDetails = () => {
   }
 
   const planetId = () => {
-    return character?.properties.homeworld[character?.properties.homeworld.length - 1]
+    const id = character?.properties.homeworld[character?.properties.homeworld.length - 1]
+    return id === 0 ? 10 : id
   }
 
   const getInfo = () => {
     axios.get(`https://www.swapi.tech/api/people/${id}`)
       .then(res => {
         console.log(res)
-       setTimeout(() => {
         setLoading(false)
         setCharacter(res.data.result)
-       }, 1000);
+
       })
       .catch(err => {
         console.log(err)
@@ -53,22 +53,22 @@ export const CharacterDetails = () => {
     }
   }, [])
   return (
-    <div className="w-10/12 mx-auto text-center pt-10 h-100 flex flex-col justify-center items-center" style={{minHeight: '70vh'}}>
+    <div className="w-10/12 mx-auto text-center py-10 h-100 flex flex-col justify-center items-center" style={{minHeight: '70vh'}}>
       <Link to="/" className="self-start">
       {  !loading && 
-        <div className=" cursor-pointer bg-yellow-400 px-3 py-1">Volver</div>
+        <div className=" cursor-pointer text-yellow-400 font-black px-3 py-1"><i className="fa fa-arrow-left" aria-hidden="true"></i>  Go Back</div>
       }
       </Link>
       { loading ?
         <div className="flex flex-col text-center">
           <img src={DVader} width="250px"></img>
-          <span className="text-3xl font-black mt-5">Loading data</span>
+          <span className="text-xl  mt-5">Loading data</span>
         </div> :
         <>
         <img src={getThumbnail()} width="330px"/>
       <h2 className="text-6xl font-extrabold mt-5">{ character?.properties?.name }</h2>
       <p className="mt-3 text-lg">"{ character?.description }"</p>
-      <div className="p-4 bg-gray-100 w-3/6 mt-5 mb-5 mx-auto">
+      <div className="p-4  w-4/6 mt-5 mb-5 mx-auto">
         <h5 className="text-xl font-bold">Details</h5>
         <div className="flex flex-row justify-around mt-5">
           <div className="w-1/3 text-left">
